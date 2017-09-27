@@ -3,7 +3,7 @@ import YOLO_tiny_tf
 
 yolo = YOLO_tiny_tf.YOLO_TF()
 
-yolo.disp_console = False
+yolo.disp_console = True
 yolo.imshow = True
 
 if len(sys.argv) > 1:
