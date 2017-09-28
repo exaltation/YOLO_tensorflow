@@ -6,9 +6,14 @@ import YOLO_small_tf
 yolo = YOLO_small_tf.YOLO_TF()
 
 cap = cv2.VideoCapture(sys.argv[1])
+vw = int(cap.get(3))
+vh = int(cap.get(4))
 # for i in range(10): #
 #     print(i, cap.get(i))
-outv = cv2.VideoWriter(sys.argv[1] + '.processed.mp4', cv2.VideoWriter_fourcc(*'mjpg'), 20.0, (int(cap.get(3)), int(cap.get(4))))
+outv = cv2.VideoWriter(sys.argv[1] + '.processed.mp4', cv2.VideoWriter_fourcc(*'mjpg'), 20.0, (vw, vh))
+
+inLine = vh//8
+outLine = 2*vh//8
 
 while(cap.isOpened()):
     ret, frame = cap.read()
@@ -25,6 +30,9 @@ while(cap.isOpened()):
             cv2.circle(frame,(x,y), 5, (0,0,255), -1)
             cv2.rectangle(frame,(x-w,y-h),(x+w,y+h),(0,255,0),2)
             print(res)
+
+            cv2.line(frame, (0,inLine), (vw,inLine), (255,0,0), 4)
+            cv2.line(frame, (0,outLine), (vw,outLine), (0,255,0), 4)
 
     outv.write(frame)
 
