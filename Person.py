@@ -7,7 +7,7 @@ class Passenger(object):
         self.age = 0
         self.max_age = max_age
         self.done = False
-        self.near_radius = 100
+        self.near_radius = 150
 
     def updateCoords(self, nx, ny):
         self.tracks.append([self.x,self.y])
@@ -23,17 +23,17 @@ class Passenger(object):
     def timedOut(self):
         return self.done
 
-    def wasGoingIn(self):
-        if len(self.tracks) < 1:
+    def wasGoingIn(self, inLine, outLine):
+        if len(self.tracks) < 3:
             return False
-        if abs(self.y - self.tracks[-1][1]) < 0:
+        if self.y - self.tracks[-1][1] < 0 and abs(self.y - inLine) < abs(self.y - outLine):
             return True
         return False
 
-    def wasGoingOut(self):
-        if len(self.tracks) < 1:
+    def wasGoingOut(self, inLine, outLine):
+        if len(self.tracks) < 3:
             return False
-        if abs(self.y - self.tracks[-1][1]) > 0:
+        if self.y - self.tracks[-1][1] > 0 and abs(self.y - inLine) > abs(self.y - outLine):
             return True
         return False
 
