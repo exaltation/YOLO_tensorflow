@@ -51,7 +51,7 @@ while(cap.isOpened()):
                         new = False
                         if i.wasGoingOut(outLine,inLine) == True:
                             outCount += 1;
-                        elif i.going_DOWN(outLine,inLine) == True:
+                        elif i.wasGoingIn(outLine,inLine) == True:
                             inCount += 1;
                         break
 
