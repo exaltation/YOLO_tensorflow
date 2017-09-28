@@ -4,7 +4,7 @@ import sys
 import YOLO_small_tf
 
 yolo = YOLO_small_tf.YOLO_TF()
-fps = 50.0
+fps = 24.0
 cap = cv2.VideoCapture(sys.argv[1])
 vw = int(cap.get(3))
 vh = int(cap.get(4))
