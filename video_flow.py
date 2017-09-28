@@ -4,7 +4,7 @@ import sys
 import YOLO_small_tf
 
 yolo = YOLO_small_tf.YOLO_TF()
-fps = 30.0
+fps = 50.0
 cap = cv2.VideoCapture(sys.argv[1])
 vw = int(cap.get(3))
 vh = int(cap.get(4))
@@ -12,8 +12,9 @@ vh = int(cap.get(4))
 #     print(i, cap.get(i))
 outv = cv2.VideoWriter(sys.argv[1] + '.processed.mp4', cv2.VideoWriter_fourcc(*'mjpg'), fps, (vw, vh))
 
-inLine = 7*vh//8
-outLine = 5*vh//8
+inLine = int(6*vh/8)
+centerLine = int(5*vh/8)
+outLine = int(4*vh/8)
 
 while(cap.isOpened()):
     ret, frame = cap.read()
@@ -32,12 +33,13 @@ while(cap.isOpened()):
             print(res)
 
     cv2.line(frame, (0,inLine), (vw,inLine), (255,0,0), 2)
+    cv2.line(frame, (0,centerLine), (vw,centerLine), (0,0,255), 2)
     cv2.line(frame, (0,outLine), (vw,outLine), (0,255,0), 2)
 
     outv.write(frame)
 
     cv2.imshow('Frame',frame)
-    k = cv2.waitKey(1000.0 / fps) & 0xff
+    k = cv2.waitKey(int(1000.0 / fps)) & 0xff
     if k == 27:
         break
 
