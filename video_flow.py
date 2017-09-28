@@ -49,23 +49,22 @@ while(cap.isOpened()):
                     if i.near(x, y):
                         i.updateCoords(x, y)
                         new = False
-                        if i.wasGoingOut(outLine,inLine) == True:
-                            outCount += 1;
-                        elif i.wasGoingIn(outLine,inLine) == True:
-                            inCount += 1;
                         break
-
-                    if i.getState() == '1':
-                        i.setDone()
-
-                    if i.timedOut():
-                        index = passengers.index(i)
-                        passengers.pop(index)
-                        del i
 
                 if new == True:
                     passengers.append(Passenger(pid, x, y, 10))
+                    pid += 1
 
+    for i in passengers:
+        if i.timedOut():
+            if i.wasGoingIn():
+                inCount += 1
+            else:
+                outCount += 1
+
+            index = passengers.index(i)
+            passengers.pop(index)
+            del i
 
     cv2.line(frame, (0,inLine), (vw,inLine), (255,0,0), 2)
     cv2.line(frame, (0,centerLine), (vw,centerLine), (0,0,255), 2)
