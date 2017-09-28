@@ -59,8 +59,8 @@ while(cap.isOpened()):
                         i.setDone()
 
                     if i.timedOut():
-                        index = persons.index(i)
-                        persons.pop(index)
+                        index = passengers.index(i)
+                        passengers.pop(index)
                         del i
 
                 if new == True:
