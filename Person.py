@@ -24,7 +24,16 @@ class Passenger(object):
         return self.done
 
     def wasGoingIn(self):
+        if len(self.tracks) < 1:
+            return False
         if abs(self.y - self.tracks[-1][1]) < 0:
+            return True
+        return False
+
+    def wasGoingOut(self):
+        if len(self.tracks) < 1:
+            return False
+        if abs(self.y - self.tracks[-1][1]) > 0:
             return True
         return False
 

@@ -13,9 +13,9 @@ vh = int(cap.get(4))
 #     print(i, cap.get(i))
 outv = cv2.VideoWriter(sys.argv[1] + '.processed.mp4', cv2.VideoWriter_fourcc(*'mjpg'), fps, (vw, vh))
 
-inLine = int(6*vh/8)
+inLine = int(7*vh/8)
 centerLine = int(5*vh/8)
-outLine = int(4*vh/8)
+outLine = int(2*vh/8)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -59,7 +59,7 @@ while(cap.isOpened()):
         if i.timedOut():
             if i.wasGoingIn():
                 inCount += 1
-            else:
+            elif i.wasGoingOut():
                 outCount += 1
 
             index = passengers.index(i)
