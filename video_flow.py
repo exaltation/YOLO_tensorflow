@@ -13,9 +13,8 @@ vh = int(cap.get(4))
 #     print(i, cap.get(i))
 outv = cv2.VideoWriter(sys.argv[1] + '.processed.mp4', cv2.VideoWriter_fourcc(*'mjpg'), fps, (vw, vh))
 
-inLine = int(7*vh/8)
-# centerLine = int(5*vh/8)
-outLine = int(2*vh/8)
+inLine = int(6*vh/8)
+outLine = int(3.3*vh/8)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -52,7 +51,7 @@ while(cap.isOpened()):
                         break
 
                 if new == True:
-                    passengers.append(Passenger(pid, x, y, 10))
+                    passengers.append(Passenger(pid, x, y, 6))
                     pid += 1
 
     for i in passengers:
@@ -67,7 +66,6 @@ while(cap.isOpened()):
             del i
 
     cv2.line(frame, (0,inLine), (vw,inLine), (255,0,0), 2)
-    # cv2.line(frame, (0,centerLine), (vw,centerLine), (0,0,255), 2)
     cv2.line(frame, (0,outLine), (vw,outLine), (0,255,0), 2)
 
     cv2.putText(frame, "Enter: %d"%inCount, (25, int(vh/10)), font, 0.5, (12, 220, 120))

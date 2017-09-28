@@ -7,13 +7,13 @@ class Passenger(object):
         self.age = 0
         self.max_age = max_age
         self.done = False
-        self.near_radius = 150
+        self.near_radius = 300
 
     def updateCoords(self, nx, ny):
-        self.tracks.append([self.x,self.y])
+        self.tracks.append([nx,ny])
         self.age = 0
-        self.x = nx
-        self.y = ny
+        # self.x = nx
+        # self.y = ny
 
     def bday(self):
         self.age += 1
