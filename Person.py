@@ -23,8 +23,10 @@ class Passenger(object):
     def timedOut(self):
         return self.done
 
-    def wasGoingIn(self, mid_start, mid_end):
-        pass
+    def wasGoingIn(self):
+        if abs(self.y - self.tracks[-1][1]) < 0:
+            return True
+        return False
 
     def near(self, x, y):
         if abs(x - self.x) < self.near_radius and abs(y - self.y) < self.near_radius:
