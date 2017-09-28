@@ -42,8 +42,8 @@ while(cap.isOpened()):
     cv2.line(frame, (0,centerLine), (vw,centerLine), (0,0,255), 2)
     cv2.line(frame, (0,outLine), (vw,outLine), (0,255,0), 2)
 
-    cv2.putText(frame, "Enter: 12", (25, int(vh/10)), font, (12, 220, 120))
-    cv2.putText(frame, "Exit: 9", (25, int(2*vh/10)), font, (12, 220, 120))
+    cv2.putText(frame, "Enter: 12", (25, int(vh/10)), font, 0.5, (12, 220, 120))
+    cv2.putText(frame, "Exit: 9", (25, int(1.2*vh/10)), font, 0.5, (12, 220, 120))
 
     outv.write(frame)
 
