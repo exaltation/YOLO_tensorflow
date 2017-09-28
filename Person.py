@@ -56,6 +56,9 @@ class Passenger(object):
 
     def getState(self):
         return self.state
-    
+
     def getDir(self):
         return self.dir
+
+    def setDone(self):
+        self.done = True
