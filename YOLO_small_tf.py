@@ -115,6 +115,17 @@ class YOLO_TF:
 		ip = tf.add(tf.matmul(inputs_processed,weight),biases)
 		return tf.maximum(self.alpha*ip,ip,name=str(idx)+'_fc')
 
+	def analyze_frame(self,img):
+		self.h_img,self.w_img,_ = img.shape
+		img_resized = cv2.resize(img, (448, 448))
+		img_RGB = cv2.cvtColor(img_resized,cv2.COLOR_BGR2RGB)
+		img_resized_np = np.asarray( img_RGB )
+		inputs = np.zeros((1,448,448,3),dtype='float32')
+		inputs[0] = (img_resized_np/255.0)*2.0-1.0
+		in_dict = {self.x: inputs}
+		net_output = self.sess.run(self.fc_32,feed_dict=in_dict)
+		return self.interpret_output(net_output[0])
+
 	def detect_from_cvmat(self,img):
 		s = time.time()
 		self.h_img,self.w_img,_ = img.shape
